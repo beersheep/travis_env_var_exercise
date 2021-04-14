@@ -1,0 +1,24 @@
+language: node_js
+node_js:
+  - 13
+
+services:
+  - docker
+
+# Pre-testing installs
+install: 
+  - echo "nothing need to be installed"
+
+# Scripts to be run such as tests
+before_script:
+  - echo "no test"
+
+script:
+  - docker --version
+  - docker build -t var-name .
+  - docker tag var-name beersheep/var-name:latest
+
+# Tasks to performed after_success
+after_success:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker push beersheep/var-name
