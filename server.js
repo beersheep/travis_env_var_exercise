@@ -4,8 +4,10 @@ function sleep(ms) {
 }
 
 async function main() {
+  const catName = process.env.CAT_NAME;
+
   while(true) {
-    console.log("Microservices rock!");
+    console.log(`My favorite cat is ${catName}`)
     await sleep(5000);
   }
 }
